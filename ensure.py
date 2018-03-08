@@ -12,9 +12,9 @@ def ensure(root, ifmt, lfmt):
 	res = file_names(root, lfmt)
 	if res != "OK":
 		return "File name mismatch! {}".format(res)
-	# res = store(root, lfmt)	
-	# if res != "OK":
-	# 	return "File name redundancy! {}".format(res)
+	res = store(root, lfmt)	
+	if res != "OK":
+		return "File name redundancy! {}".format(res)
 	res = file_format(root, ifmt, lfmt)
 	if res != "OK":
 		return "File format error! {}".format(res)

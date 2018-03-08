@@ -28,11 +28,12 @@ class GUI:
 	def convert(self):
 		lfmt = "xml"
 		ifmt = "jpg"
-		# main.convert(self.directory)
 		res = ensure.ensure(self.directory, ifmt, lfmt)
 		
 		if res == "OK":
 			print("Everything loooks good!")
+			main.convert(self.directory)
+
 		else:
 			print(res)	
 
