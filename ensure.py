@@ -34,7 +34,7 @@ def directory_structure(root):
 		return 0
 
 def folder_names(root, lfmt):
-	for img_fol,lab_fol in zip(os.listdir(root+"/images"), os.listdir(root+"/labels{}".format(lfmt))):
+	for img_fol,lab_fol in zip(sorted(os.listdir(root+"/images")), sorted(os.listdir(root+"/labels{}".format(lfmt)))):
 		#assert img_fol == lab_fol, img_fol+" and " + lab_fol + " doesn't match!"
 		if img_fol != lab_fol:
 			return img_fol + " and " + lab_fol + " doesn't match!"
