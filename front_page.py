@@ -30,12 +30,13 @@ class GUI:
 		lfmt = "xml"
 		ifmt = "jpg"
 		p.junk_remover(self.directory)
+		p.junk_remover(self.directory, target="images", source="labelsxml", ext='jpg', fol="lost")
 		res = ensure.ensure(self.directory, ifmt, lfmt)
 
 		
 		if res == "OK":
 			print("Everything loooks good!")
-			main.convert(self.directory)
+			#main.convert(self.directory)
 
 		else:
 			print(res)	
