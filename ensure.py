@@ -24,6 +24,7 @@ def ensure(root, ifmt, lfmt):
 		return "Label and Image count mismatch! {}".format(res)
 	return "OK"
 
+
 def directory_structure(root):
 	req_dirs = ['images','labelsxml','lablestxt','labelsyolo', 'labelsbbox', 'unlabelled', 'lost']
 	dirs = os.listdir(root)
@@ -43,7 +44,7 @@ def folder_names(root, lfmt):
 
 def file_names(root, lfmt):
 
-	for img_fol,lab_fol in zip(os.listdir(root+"/images"), os.listdir(root+"/labels{}".format(lfmt))):
+	for img_fol,lab_fol in zip(sorted(os.listdir(root+"/images")), sorted(os.listdir(root+"/labels{}".format(lfmt)))):
 		for img_file,lab_file in zip(sorted(os.listdir(root+"/images/"+img_fol)), sorted(os.listdir(root+"/labels{}/".format(lfmt)+lab_fol))):
 				if img_file[:-4] != lab_file[:-4]:
 					return img_fol + "/" + img_file + " and " + lab_fol + "/" + lab_file + " doesn't match!"
