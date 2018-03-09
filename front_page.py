@@ -4,6 +4,7 @@ from tkinter import *
 from tkinter import filedialog
 import main
 import ensure
+import preprocess as p
 
 class GUI:
 	def __init__(self):
@@ -28,7 +29,9 @@ class GUI:
 	def convert(self):
 		lfmt = "xml"
 		ifmt = "jpg"
+		p.junk_remover(self.directory)
 		res = ensure.ensure(self.directory, ifmt, lfmt)
+
 		
 		if res == "OK":
 			print("Everything loooks good!")
