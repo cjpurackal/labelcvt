@@ -21,6 +21,7 @@ class GUI:
 		Button(self.master, text="Browse", command=self.browsedatadir).grid(row=0, column=2)
 		Button(self.master, text="Convert", command=self.convert).grid(row=3, column=1)		
 		Button(self.master, text="Preprocess", command=self.preprocess).grid(row=3, column=2)
+		Button(self.master, text="Yolo Zip", command=self.yolo_zip).grid(row=4, column=2)
 		self.master.mainloop()
 
 	def browsedatadir(self):
@@ -29,11 +30,10 @@ class GUI:
 
 	def preprocess(self):
 		print ("started preprocessing!")
-		p.junk_remover(self.directory)
-		p.junk_remover(self.directory, target="images", source="labelsxml", ext='jpg', fol="lost")
 		p.renamifier(self.directory,"images")
 		p.renamifier(self.directory,"labelsxml")
-		
+		p.junk_remover(self.directory)
+		p.junk_remover(self.directory, target="images", source="labelsxml", ext='jpg', fol="lost")		
 		print ("preprocessing completed!")
 
 	def convert(self):
@@ -47,6 +47,8 @@ class GUI:
 
 		else:
 			print(res)	
+
+
 
 gui = GUI()
 
