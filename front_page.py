@@ -48,6 +48,11 @@ class GUI:
 		else:
 			print(res)	
 
+	def yolo_zip(self):
+		print ("does nothing as of now")
+
+
+		
 
 
 gui = GUI()
