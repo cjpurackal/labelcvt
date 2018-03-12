@@ -43,7 +43,7 @@ class GUI:
 		
 		if res == "OK":
 			print("Everything loooks good!")
-			#main.convert(self.directory)
+			main.convert(self.directory)
 
 		else:
 			print(res)	
