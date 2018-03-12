@@ -12,6 +12,10 @@ def junk_remover(root, target="labelsxml", source="images", ext='xml', fol="unla
 				shutil.move(os.path.join(root, source, cat, f), os.path.join(root, fol, cat))
 
 
-
-
+def renamifier(root):
+	d = os.path.join(root,"images")
+	for f in os.listdir(d):
+	    for i in os.listdir(d+"/"+f):
+	    	if f not in i:
+	        	os.rename(d+"/"+f+"/"+i,d+"/"+f+"/"+f+"_"+i)
 
