@@ -31,7 +31,9 @@ class GUI:
 		print ("started preprocessing!")
 		p.junk_remover(self.directory)
 		p.junk_remover(self.directory, target="images", source="labelsxml", ext='jpg', fol="lost")
-		p.renamifier(self.directory)
+		p.renamifier(self.directory,"images")
+		p.renamifier(self.directory,"labelsxml")
+		
 		print ("preprocessing completed!")
 
 	def convert(self):
