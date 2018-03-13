@@ -5,7 +5,9 @@ from tkinter import filedialog
 import main
 import ensure
 import preprocess as p
-
+from shutil import copy2
+import os
+import conf_generator.yolo as ycg
 class GUI:
 	def __init__(self):
 		self.master = tk.Tk()
@@ -13,7 +15,7 @@ class GUI:
 		self.img_lable.grid(row=0)
 
 		# self.progress = ttk.Progressbar(self.master, orient="horizontal",
-  #                                       length=200, mode="determinate")
+  		#                                 length=200, mode="determinate")
 		
 		self.e1 = Entry(self.master)
 		self.e1.grid(row=0, column=1)
@@ -49,7 +51,30 @@ class GUI:
 			print(res)	
 
 	def yolo_zip(self):
-		print ("does nothing as of now")
+		ypath = os.path.join(self.directory,"yolo_zip")
+		if not os.path.exists(ypath):
+			os.mkdir(ypath)
+		if not os.path.exists(ypath+"/images"):
+			os.mkdir(ypath+"/images")
+		if not os.path.exists(ypath+"/labels"):
+			os.mkdir(ypath+"/labels")
+			
+			
+		os.system("cp {}/images/*/* {}/images".format(self.directory, ypath))
+		os.system("cp {}/labelsyolo/*/* {}/labels".format(self.directory, ypath))
+
+		#get the count of cats
+		cats = open("cat.names",'r')
+		nc = sum(1 for cat in cats)
+
+		y = ycg.Yolo(nc)
+		y.set_root(self.directory)
+		y.set_server_path("/home/ubuntu/packages/darknet/dataset")
+		y.generate(ypath)
+		y.generate_test_train_files(ypath)
+		y.generate_data_file(ypath)
+
+		os.system("zip -r {}/yolo.zip {}".format(ypath,ypath))
 
 
 		
