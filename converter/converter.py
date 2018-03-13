@@ -26,6 +26,8 @@ def convert_xml_to_bbox(food_name, root_path):
 		
 		for nameF in nameFile:
 			
+			print("processing {}".format(nameF))
+			
 			nameF=nameF.replace('.xml','')
 			
 			doc = etree.parse(root_path + "/labelsxml/" + food_name + "/" + nameF+'.xml')
