@@ -62,6 +62,7 @@ class GUI:
 			
 		os.system("cp {}/images/*/* {}/images".format(self.directory, ypath))
 		os.system("cp {}/labelsyolo/*/* {}/labels".format(self.directory, ypath))
+		os.system("cp cat.names {}".format(ypath))
 
 		#get the count of cats
 		cats = open("cat.names",'r')
