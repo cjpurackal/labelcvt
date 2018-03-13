@@ -91,7 +91,7 @@ def convert_bbox_to_yolo(food_name, root_path):
 		""" Convert the data to YOLO format """
 		ct = 0
 		for line in lines:
-			if(len(line) >= 2):
+			if(len(line) >= 4):
 				ct = ct + 1
 				#print(line + "\n")
 				elems = line.split(' ')
