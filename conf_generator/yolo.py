@@ -27,9 +27,11 @@ class Yolo:
 	#this is a stupid way
 	def preprocess(self, path):
 		for f in os.listdir(path+"/dataset/"):
-			os.rename(path+"/dataset//"+f, path+"/dataset/"+f.replace("image","i"))
+			os.rename(path+"/dataset/"+f, path+"/dataset/"+f.replace("image","i"))
 		for f in os.listdir(path+"/dataset/"):
 			os.rename(path+"/dataset/"+f, path+"/dataset/"+f.replace("label","l"))
+		for f in os.listdir(path+"/dataset/"):
+			os.rename(path+"/dataset/"+f, path+"/dataset/"+f.replace("raw","r"))
 		for f in os.listdir(path+"/dataset/"):
 			os.rename(path+"/dataset/"+f, path+"/dataset/"+f.replace(" ","_"))
 		for f in os.listdir(path+"/dataset/"):
