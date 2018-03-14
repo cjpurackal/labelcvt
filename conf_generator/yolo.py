@@ -63,7 +63,7 @@ class Yolo:
 		# Populate train.txt and test.txt
 		counter = 1  	
 		index_test = round(100 / percentage_test)  
-		for pathAndFilename in glob.iglob(os.path.join(path,"images","*.jpg")):  
+		for pathAndFilename in glob.iglob(os.path.join(path,"dataset","*.jpg")):  
 		    title, ext = os.path.splitext(os.path.basename(pathAndFilename))
 
 		    if counter == index_test:
