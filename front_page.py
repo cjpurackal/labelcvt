@@ -54,14 +54,12 @@ class GUI:
 		ypath = os.path.join(self.directory,"yolo_zip")
 		if not os.path.exists(ypath):
 			os.mkdir(ypath)
-		if not os.path.exists(ypath+"/images"):
-			os.mkdir(ypath+"/images")
-		if not os.path.exists(ypath+"/labels"):
-			os.mkdir(ypath+"/labels")
+		if not os.path.exists(ypath+"/dataset"):
+			os.mkdir(ypath+"/dataset")
 			
 			
-		os.system("cp {}/images/*/* {}/images".format(self.directory, ypath))
-		os.system("cp {}/labelsyolo/*/* {}/labels".format(self.directory, ypath))
+		os.system("cp {}/images/*/* {}/dataset".format(self.directory, ypath))
+		os.system("cp {}/labelsyolo/*/* {}/dataset".format(self.directory, ypath))
 		os.system("cp cat.names {}".format(ypath))
 
 		#get the count of cats
@@ -71,7 +69,8 @@ class GUI:
 		y = ycg.Yolo(nc)
 		y.set_root(self.directory)
 		y.set_server_path("/home/ubuntu/packages/darknet/dataset")
-		y.generate(ypath)
+		y.preprocess(ypath)
+		y.generate_conf(ypath)
 		y.generate_test_train_files(ypath)
 		y.generate_data_file(ypath)
 

@@ -24,8 +24,26 @@ class Yolo:
 	def set_classses(sefl, clss):
 		self.classes = clss
 
+	#this is a stupid way
+	def preprocess(self, path):
+		for f in os.listdir(path+"/dataset/"):
+			os.rename(path+"/dataset//"+f, path+"/dataset/"+f.replace("image","i"))
+		for f in os.listdir(path+"/dataset/"):
+			os.rename(path+"/dataset/"+f, path+"/dataset/"+f.replace("label","l"))
+		for f in os.listdir(path+"/dataset/"):
+			os.rename(path+"/dataset/"+f, path+"/dataset/"+f.replace(" ","_"))
+		for f in os.listdir(path+"/dataset/"):
+			os.rename(path+"/dataset/"+f, path+"/dataset/"+f.replace("(","_"))
+		for f in os.listdir(path+"/dataset/"):
+			os.rename(path+"/dataset/"+f, path+"/dataset/"+f.replace(")","_"))
 
-	def generate(self, path):
+		
+			
+
+
+
+
+	def generate_conf(self, path):
 		self.lines[229] = 'classes={}\n'.format(self.classes)
 		self.lines[223] = 'filters={}\n'.format(self.output_filters)
 		self.lines[14] = 'max_batches = {}\n'.format(self.max_batches)
@@ -62,3 +80,4 @@ class Yolo:
 			f.write('valid = {}\n'.format(self.server_path+"/mix/test.txt"))
 			f.write('names = {}\n'.format(self.server_path+"/mix/cat.names"))
 			f.write('backup = {}'.format(self.server_path+"/mix/backup"))
+
