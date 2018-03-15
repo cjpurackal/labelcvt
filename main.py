@@ -29,7 +29,7 @@ def convert(path, ifmt="xml", ofmt="yolo"):
 
 def update_cat_names(root):
 	f = open("cat.names","w+")
-	for cat in os.listdir(root+"images"):
+	for cat in os.listdir(root+"/images"):
 		f.write(cat+"\n")
 
 		
