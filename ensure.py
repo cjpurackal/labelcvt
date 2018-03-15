@@ -26,7 +26,7 @@ def ensure(root, ifmt, lfmt):
 
 
 def directory_structure(root):
-	req_dirs = ['images','labelsxml','lablestxt','labelsyolo', 'labelsbbox', 'unlabelled', 'lost']
+	req_dirs = ['images','labelsxml','lablestxt','labelsyolo', 'labelsbbox', 'unlabelled', 'lost', 'yolo_zip']
 	dirs = os.listdir(root)
 	if not set(dirs).issubset(req_dirs):
 		return -1

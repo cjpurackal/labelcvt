@@ -78,8 +78,8 @@ class Yolo:
 
 		with open(path+'/obj.data', 'w') as f:
 			f.write('classes= {}\n'.format(self.classes))
-			f.write('train = {}\n'.format(self.server_path+"/mix/train.txt"))
-			f.write('valid = {}\n'.format(self.server_path+"/mix/test.txt"))
-			f.write('names = {}\n'.format(self.server_path+"/mix/cat.names"))
-			f.write('backup = {}'.format(self.server_path+"/mix/backup"))
+			f.write('train = {}\n'.format(self.server_path+"/../yolo_zip/train.txt"))
+			f.write('valid = {}\n'.format(self.server_path+"/../yolo_zip/test.txt"))
+			f.write('names = {}\n'.format(self.server_path+"/../yolo_zip/cat.names"))
+			f.write('backup = {}'.format(self.server_path+"/../yolo_zip/backup"))
 
