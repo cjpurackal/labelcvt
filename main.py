@@ -6,12 +6,13 @@ import ensure
 
 root_path = "/home/christie/Projects/ai/Machine_Learning/Work/agrima/dataset/test/dataset/"
 
-with open("cat.names", "r") as f:
-	category = {name.split("\n",1)[0]:i for i,name in enumerate(f)}
+
 
 
 
 def check_for_updates():
+	f = open("cat.names", "r")
+	category = {name.split("\n",1)[0]:i for i,name in enumerate(f)}
 	new = []
 	for name in os.listdir(root_path+'/labelsxml'):
 		if name not in category:

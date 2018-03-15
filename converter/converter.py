@@ -14,6 +14,8 @@ with open("cat.names", "r") as f:
 
 def convert_xml_to_bbox(food_name, root_path):	
 
+	f = open("cat.names", "r")
+	category = {name.split("\n",1)[0]:i for i,name in enumerate(f)}
 	wd = getcwd()
 	#if not exits, create the results folder 
 	if not os.path.exists(root_path+'/labelsbbox/'):
@@ -66,6 +68,11 @@ def convert_xml_to_bbox(food_name, root_path):
 
 
 def convert_bbox_to_yolo(food_name, root_path):
+	
+	f = open("cat.names", "r")
+	category = {name.split("\n",1)[0]:i for i,name in enumerate(f)}
+
+
 	cls_id = category[food_name]
 	outpath = os.path.join(root_path,"labelsyolo",food_name)
 
