@@ -82,4 +82,5 @@ class Yolo:
 			f.write('valid = {}\n'.format(self.server_path+"/../yolo_zip/test.txt"))
 			f.write('names = {}\n'.format(self.server_path+"/../yolo_zip/cat.names"))
 			f.write('backup = {}'.format(self.server_path+"/../yolo_zip/backup"))
+		os.system('mkdir {}'.format(path+"/backup"))
 
