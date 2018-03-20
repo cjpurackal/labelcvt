@@ -7,7 +7,7 @@ import ensure
 import preprocess as p
 from shutil import copy2
 import os
-import conf_generator.yolo as ycg
+import frameworks.yolo as ycg
 class GUI:
 	def __init__(self):
 		self.master = tk.Tk()

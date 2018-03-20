@@ -3,7 +3,7 @@ import glob
 
 class Yolo:
 	def __init__(self,clss):
-		self.lines = list(tuple(open(os.getcwd()+'/conf_generator/yolo.cfg','r')))
+		self.lines = list(tuple(open(os.getcwd()+'/frameworks/yolo.cfg','r')))
 		self.classes = clss
 		self.max_batches = 2000
 		self.output_filters = (clss + 5) * 5
@@ -81,6 +81,6 @@ class Yolo:
 			f.write('train = {}\n'.format(self.server_path+"/../yolo_zip/train.txt"))
 			f.write('valid = {}\n'.format(self.server_path+"/../yolo_zip/test.txt"))
 			f.write('names = {}\n'.format(self.server_path+"/../yolo_zip/cat.names"))
-			f.write('backup = {}'.format(self.server_path+"/../yolo_zip/backup"))
-		os.system('mkdir {}'.format(path+"/backup"))
+			f.write('backup = {}'.format(self.server_path+"/../yolo_zip/weights"))
+		os.system('mkdir {}'.format(path+"/weights"))
 
