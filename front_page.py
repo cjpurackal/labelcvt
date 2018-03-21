@@ -42,7 +42,7 @@ class GUI:
 			p.junk_remover(self.directory, target="images", source="labelsxml", ext='jpg', fol="lost")		
 			print ("preprocessing completed!")
 		else:
-			print ("ERROR!")	
+			print (res)	
 			
 	def convert(self):
 		lfmt = "xml"
