@@ -34,16 +34,12 @@ class GUI:
 		lfmt = "xml"
 		ifmt = "jpg"
 		print ("started preprocessing!")
-		res = ensure.ensure(self.directory, ifmt, lfmt)		
-		if res == "OK":
-			p.renamifier(self.directory,"images")
-			p.renamifier(self.directory,"labelsxml")
-			p.junk_remover(self.directory)
-			p.junk_remover(self.directory, target="images", source="labelsxml", ext='jpg', fol="lost")		
-			print ("preprocessing completed!")
-		else:
-			print (res)	
-			
+		p.renamifier(self.directory,"images")
+		p.renamifier(self.directory,"labelsxml")
+		p.junk_remover(self.directory)
+		p.junk_remover(self.directory, target="images", source="labelsxml", ext='jpg', fol="lost")		
+		print ("preprocessing completed!")
+		
 	def convert(self):
 		lfmt = "xml"
 		ifmt = "jpg"
