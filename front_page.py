@@ -31,13 +31,19 @@ class GUI:
 		self.e1.insert(0,self.directory)
 
 	def preprocess(self):
+		lfmt = "xml"
+		ifmt = "jpg"
 		print ("started preprocessing!")
-		p.renamifier(self.directory,"images")
-		p.renamifier(self.directory,"labelsxml")
-		p.junk_remover(self.directory)
-		p.junk_remover(self.directory, target="images", source="labelsxml", ext='jpg', fol="lost")		
-		print ("preprocessing completed!")
-
+		res = ensure.ensure(self.directory, ifmt, lfmt)		
+		if res == "OK":
+			p.renamifier(self.directory,"images")
+			p.renamifier(self.directory,"labelsxml")
+			p.junk_remover(self.directory)
+			p.junk_remover(self.directory, target="images", source="labelsxml", ext='jpg', fol="lost")		
+			print ("preprocessing completed!")
+		else:
+			print ("ERROR!")	
+			
 	def convert(self):
 		lfmt = "xml"
 		ifmt = "jpg"
