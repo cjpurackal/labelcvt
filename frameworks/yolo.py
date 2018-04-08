@@ -54,11 +54,10 @@ class Yolo:
 			f.write(''.join(line for line in self.lines))
 			f.close()
 
-	def generate_test_train_files(self,path,server_path="/home/ubuntu/packages/darknet/dataset"):
+	def generate_test_train_files(self,path,server_path="/home/ubuntu/packages/yolov3/darknet/dataset"):
 
 		file_train = open(path+'/train.txt', 'w')  
 		file_test = open(path+'/test.txt', 'w')
-		server_path = "/home/ubuntu/packages/darknet/dataset"
 		percentage_test = 10
 		# Populate train.txt and test.txt
 		counter = 1  	
