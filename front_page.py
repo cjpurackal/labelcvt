@@ -71,7 +71,7 @@ class GUI:
 
 		y = ycg.Yolo(nc)
 		y.set_root(self.directory)
-		y.set_server_path("/home/ubuntu/packages/darknet/dataset")
+		y.set_server_path("/home/ubuntu/packages/yolov3/darknet/dataset")
 		y.preprocess(ypath)
 		y.generate_conf(ypath)
 		y.generate_test_train_files(ypath)
