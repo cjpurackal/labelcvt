@@ -1,4 +1,3 @@
-
 from pathlib import Path
 import os.path
 import shutil
@@ -18,16 +17,29 @@ def filestosend(self):
 		#os.path.join('/home/caroline/Desktop/data',x)
 		#print(os.listdir(folder))
 	f=open('/home/caroline/Desktop/data/data.txt',"w+")
-	for x in os.listdir('/home/caroline/Desktop/data'):
+	'''for x in os.listdir('/home/caroline/Desktop/data'):
 		if (imghdr.what(os.path.join('/home/caroline/Desktop/data',x)) =="jpeg"):
 			f.write(x+"\n")
-	f.close()
+	'''
 		#server data
+	#ssh
+	#miniurl=self.directory+"/temp/"
+	miniurl="/home/caroline/agrima/datasets/capgemini/mini/more2/dataset/temp/"
+	serverdata=os.popen("echo Jeffin0718 | sudo -S ssh -i /home/caroline/Downloads/agrima_p2xlarge_200.pem ubuntu@52.43.166.212 ls /home/ubuntu/packages/yolov3/darknet/dataset/*.jpg").read()
+	individualnames=serverdata.split("\n")
+	for o in individualnames:
+		names=o.split("/")
+		f.write(names[len(names)-1]+"\n")
+	f.close()
+	
+	#ssh
+	#file containg the names of images in the server
 	r=open('/home/caroline/Desktop/data/data.txt','r+')
 
 	fl=r.readlines()
 	k=0
 		#new upload
+	#File containing the names of the images to be uploaded 
 	c=open('/home/caroline/Desktop/data/newdata.txt',"w+")
 	print(self.directory)
 	for img in os.listdir(os.path.join(self.directory,'temp')):
@@ -46,9 +58,24 @@ def filestosend(self):
 		else:
 			send.write(j)
 			datalist.append(j)
-	print("----New Items to be added----")
+	
 	p.close()
 	c.close()
 	send.close()
-	for x in datalist:
-		print(x)
+	if(len(datalist)==0):
+		print("No new Data found!!!!")
+	else:
+		print("----New Items to be added----")
+		
+		for x in datalist:
+			url1=miniurl+x
+			print(url1)
+			url="/home/caroline/agrima/datasets/capgemini/mini/more2/dataset/temp/apple_0.jpg"
+			if(url==url1):
+				print("equal")
+			else:
+				print("false")
+			print (" sudo scp -i /home/caroline/Downloads/agrima_p2xlarge_200.pem "+ url+" ubuntu@52.43.166.212:~")
+			os.system("echo Jeffin0718 | sudo scp -i  /home/caroline/Downloads/agrima_p2xlarge_200.pem "+url+" ubuntu@52.43.166.212:~")
+			#os.system("echo Jeffin0718 | sudo scp -i  /home/caroline/Downloads/agrima_p2xlarge_200.pem "+url+" ubuntu@52.43.166.212:~")
+			# print(x)
