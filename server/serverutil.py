@@ -24,6 +24,7 @@ def filestosend(self):
 		#server data
 	#ssh
 	#miniurl=self.directory+"/temp/"
+	#Directory to upload
 	miniurl="/home/caroline/agrima/datasets/capgemini/mini/more2/dataset/temp/"
 	serverdata=os.popen("echo Jeffin0718 | sudo -S ssh -i /home/caroline/Downloads/agrima_p2xlarge_200.pem ubuntu@52.43.166.212 ls /home/ubuntu/packages/yolov3/darknet/dataset/*.jpg").read()
 	individualnames=serverdata.split("\n")

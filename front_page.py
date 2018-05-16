@@ -14,8 +14,13 @@ import ensure
 import preprocess as p
 from shutil import copy2
 import os
+from plot import draw
 from server import serverutil
 import frameworks.yolo as ycg
+import matplotlib.pyplot as plt 
+import matplotlib.patches as patches
+from PIL import Image
+import numpy as np
 class GUI:
 	def __init__(self):
 		self.master = tk.Tk()
@@ -36,12 +41,66 @@ class GUI:
 		Button(self.master, text="Yolo Zip", command=self.yolo_zip).grid(row=4, column=2)
 		Button(self.master,text="Clean",command=self.clean_dir).grid(row=5,column=2)
 		Button(self.master,text="Upload",command=self.upload).grid(row=6,column=2)
+		Button(self.master,text="Visualize",command=self.visual).grid(row=7,column=2)
 		self.master.mainloop()
 
 	def browsedatadir(self):
 		self.directory = filedialog.askdirectory()
 		self.e1.insert(0,self.directory)
 
+
+	def visual(self):
+		newWindow=tk.Toplevel(self.master)
+
+		self.xmin_label=Label(newWindow,text="Xmin : ")
+		self.xmin_label.grid(row=0,column=1)
+		self.xmin_input=Entry(newWindow,bd=1)
+		
+		self.xmin_input.grid(row=0,column=2)
+		self.ymin_label=Label(newWindow,text="Ymin : ")
+		self.ymin_label.grid(row=1,column=1)
+		self.ymin_input=Entry(newWindow,bd=1)
+		self.ymin_input.grid(row=1,column=2)
+
+		self.xmax_label=Label(newWindow,text="Xmax : ")
+		self.xmax_label.grid(row=2,column=1)
+		self.xmax_input=Entry(newWindow,bd=1)
+		self.xmax_input.grid(row=2,column=2)
+		self.ymax_label=Label(newWindow,text="Ymax : ")
+		self.ymax_label.grid(row=3,column=1)
+		self.ymax_input=Entry(newWindow,bd=1)
+		self.ymax_input.grid(row=3,column=2)
+
+		self.browse_label=Label(newWindow,text="Browse : ")
+		self.browse_label.grid(row=4,column=1)
+		self.browse_path=Entry(newWindow)
+		self.browse_path.grid(row=4,column=2)
+		self.browse_button=Button(newWindow,text="Browse",command=self.askfile).grid(row=4,column=3)
+
+		Button(newWindow,text="Plot",command=self.plot).grid(row=5,column=2)
+		newWindow.geometry("300x200")
+
+	def askfile(self):
+		self.file=filedialog.askopenfilename()
+		self.browse_path.insert(0,self.file)
+		self.original_path=self.browse_path.get()
+		print(self.original_path)
+	def plot(self):
+		self.xmin=self.xmin_input.get()
+		self.ymin=self.ymin_input.get()
+		self.xmax=self.xmax_input.get()
+		self.ymax=self.ymax_input.get()
+		print(int(self.xmin))
+		x=int(self.xmin)
+		y=int(self.ymin)
+		xm=int(self.xmax)
+		ym=int(self.ymax)
+		
+		#print(path_file)
+		draw.imageplot(x,y,xm,ym,self.original_path)
+		#draw.imageplot(self.xmin,self.ymin,self.xmax,self.ymax)
+
+		
 
 	#compare function
 	def upload(self):
