@@ -24,6 +24,7 @@ import numpy as np
 class GUI:
 	def __init__(self):
 		self.master = tk.Tk()
+		self.master.title("Labelscvt")
 		self.img_lable = Label(self.master, text="Dataset dir:")
 		self.img_lable.grid(row=0)
 
@@ -33,20 +34,29 @@ class GUI:
 		
 		self.e1 = Entry(self.master)
 		self.e1.grid(row=0, column=1)
+
+
 		
-		Button(self.master, text="Browse", command=self.browsedatadir).grid(row=0, column=2)
-		Button(self.master, text="Convert", command=self.convert).grid(row=3, column=1)		
-		Button(self.master, text="Preprocess", command=self.preprocess).grid(row=3, column=2)
 		
-		Button(self.master, text="Yolo Zip", command=self.yolo_zip).grid(row=4, column=2)
-		Button(self.master,text="Clean",command=self.clean_dir).grid(row=5,column=2)
-		Button(self.master,text="Upload",command=self.upload).grid(row=6,column=2)
-		Button(self.master,text="Visualize",command=self.visual).grid(row=7,column=2)
+		Button(self.master, text="Browse", command=self.browsedatadir).grid(row=0, column=2,sticky="ew")
+		self.con=Button(self.master, text="Convert", command=self.convert,state=DISABLED)
+		self.con.grid(row=4, column=1,sticky="ew")		
+		self.preprocess=Button(self.master, text="Preprocess", command=self.preprocess,state=DISABLED)
+		self.preprocess.grid(row=4, column=0)
+		self.yolo=Button(self.master, text="Yolo Zip", command=self.yolo_zip,state=DISABLED)
+		self.yolo.grid(row=4, column=2,sticky="ew")
+		self.clean=Button(self.master,text="Clean",command=self.clean_dir,state=DISABLED)
+		self.clean.grid(row=8,column=0,sticky="ew")
+		self.upload=Button(self.master,text="Upload",command=self.upload,state=DISABLED)
+		self.upload.grid(row=8,column=1,sticky="ew")
+		Button(self.master,text="Visualize",command=self.visual).grid(row=8,column=2,sticky="ew")
 		self.master.mainloop()
 
 	def browsedatadir(self):
 		self.directory = filedialog.askdirectory()
 		self.e1.insert(0,self.directory)
+		self.preprocess.configure(state="normal")
+		self.clean.configure(state="normal")
 
 
 	def visual(self):
@@ -126,8 +136,7 @@ class GUI:
 	
 
 	def preprocess(self):
-		self.progress.grid(row=6,column=1)
-		self.progress.start([5])
+		
 		lfmt = "xml"
 		ifmt = "jpg"
 		print ("started preprocessing!")
@@ -137,7 +146,8 @@ class GUI:
 		p.junk_remover(self.directory, target="images", source="labelsxml", ext='jpg', fol="lost")
 				
 		print ("preprocessing completed!")
-		self.progressingBar()
+		self.con.configure(state="normal")
+		
 		
 	def progressingBar(self):
 		print("Stop Progress")
@@ -159,7 +169,9 @@ class GUI:
 			print("Here")
 			self.progressingBar()
 		else:
-			print(res)	
+			print(res)
+		self.yolo.configure(state="normal")
+		self.upload.configure(state="normal")	
 		
 
 	def yolo_zip(self):
