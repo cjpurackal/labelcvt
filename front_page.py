@@ -57,6 +57,7 @@ class GUI:
 		self.e1.insert(0,self.directory)
 		self.preprocess.configure(state="normal")
 		self.clean.configure(state="normal")
+		self.upload.configure(state="normal")
 
 
 	def visual(self):
@@ -171,7 +172,7 @@ class GUI:
 		else:
 			print(res)
 		self.yolo.configure(state="normal")
-		self.upload.configure(state="normal")	
+			
 		
 
 	def yolo_zip(self):

@@ -26,6 +26,7 @@ def filestosend(self):
 	#miniurl=self.directory+"/temp/"
 	#Directory to upload
 	miniurl="/home/jeffin/agrima/datasets/capgemini/mini/more2/temp/"
+	miniurl1='/home/jeffin/agrima/datasets/capgemini/mini/more2/temp/'
 	
 
 	print(h)
@@ -42,7 +43,7 @@ def filestosend(self):
 	#r=open(newfiles,'r+')
 	#r=open('/home/jeffin/Desktop/test/data.txt','r+')
 
-	#fl=r.readlines()
+	
 	k=0
 		#new upload
 	#File containing the names of the images to be uploaded 
@@ -57,12 +58,9 @@ def filestosend(self):
 	p=open(newfiles,"r+")
 	newfilestoserver=str(h)+'/Desktop/test/senddata.txt'
 	send=open(newfilestoserver,"w+")
-	###
-	r=open(newfiles,'r+')
-	#r=open('/home/jeffin/Desktop/test/data.txt','r+')
+	r=open(serverfiles,'r+')
 
 	fl=r.readlines()
-	###
 	fn=p.readlines()
 	for j in fn:
 		k=0
@@ -78,17 +76,21 @@ def filestosend(self):
 	p.close()
 	c.close()
 	send.close()
+	server1="ubuntu@52.43.166.212:~/packages/yolov3/darknet/dataset/"
+	p="/home/jeffin/agrima/datasets/capgemini/mini/more2/temp/apple_1v.jpg"
 	if(len(datalist)==0):
 		print("No new Data found!!!!")
 	else:
 		print("----New Items to be added----")
+		tobesend=open(newfilestoserver,"r+")
+		l=tobesend.readlines()
+
 		
-		for x in datalist:
-			url1=miniurl+x
-			print(url1)
-			#server path
-			#url="/home/caroline/agrima/datasets/capgemini/mini/more2/dataset/temp/apple_0.jpg"
-			#print (" sudo scp -i /home/caroline/Downloads/agrima_p2xlarge_200.pem "+ url+" ubuntu@52.43.166.212:~")
-			os.system("echo Jeffin | sudo scp -i  /home/jeffin/agrima/key/agrima_p2xlarge_200.pem "+url1+" ubuntu@52.43.166.212:~")
-			#os.system("echo Jeffin0718 | sudo scp -i  /home/caroline/Downloads/agrima_p2xlarge_200.pem "+url+" ubuntu@52.43.166.212:~")
-			# print(x)
+		for k in l:
+			print("uploading "+k+" to server")
+			url2="/home/jeffin/agrima/datasets/capgemini/mini/more2/temp/"+k.strip()
+			n="echo Jeffin | sudo scp -i /home/jeffin/agrima/key/agrima_p2xlarge_200.pem -r /home/jeffin/agrima/datasets/capgemini/mini/more2/temp/apple_1v.jpg ubuntu@52.43.166.212:~/packages/yolov3/darknet/dataset/"
+			m="echo Jeffin | sudo scp -i /home/jeffin/agrima/key/agrima_p2xlarge_200.pem -r "+url2.strip()+" "+server1
+			os.system(m)
+			
+		
