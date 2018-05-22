@@ -85,12 +85,13 @@ def filestosend(self):
 		tobesend=open(newfilestoserver,"r+")
 		l=tobesend.readlines()
 
-		
+		items=0
 		for k in l:
+			items+=1
 			print("uploading "+k+" to server")
 			url2="/home/jeffin/agrima/datasets/capgemini/mini/more2/temp/"+k.strip()
 			n="echo Jeffin | sudo scp -i /home/jeffin/agrima/key/agrima_p2xlarge_200.pem -r /home/jeffin/agrima/datasets/capgemini/mini/more2/temp/apple_1v.jpg ubuntu@52.43.166.212:~/packages/yolov3/darknet/dataset/"
 			m="echo Jeffin | sudo scp -i /home/jeffin/agrima/key/agrima_p2xlarge_200.pem -r "+url2.strip()+" "+server1
 			os.system(m)
-			
+		print(str(items)+ " items uploaded")
 		
