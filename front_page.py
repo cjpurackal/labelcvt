@@ -63,21 +63,21 @@ class GUI:
 	def visual(self):
 		newWindow=tk.Toplevel(self.master)
 
-		self.xmin_label=Label(newWindow,text="Xmin : ")
+		self.xmin_label=Label(newWindow,text="Xmin   : ")
 		self.xmin_label.grid(row=0,column=1)
 		self.xmin_input=Entry(newWindow,bd=1)
 		
 		self.xmin_input.grid(row=0,column=2)
-		self.ymin_label=Label(newWindow,text="Ymin : ")
+		self.ymin_label=Label(newWindow,text="Ymin   : ")
 		self.ymin_label.grid(row=1,column=1)
 		self.ymin_input=Entry(newWindow,bd=1)
 		self.ymin_input.grid(row=1,column=2)
 
-		self.xmax_label=Label(newWindow,text="Xmax : ")
+		self.xmax_label=Label(newWindow,text="Width  : ")
 		self.xmax_label.grid(row=2,column=1)
 		self.xmax_input=Entry(newWindow,bd=1)
 		self.xmax_input.grid(row=2,column=2)
-		self.ymax_label=Label(newWindow,text="Ymax : ")
+		self.ymax_label=Label(newWindow,text="Height : ")
 		self.ymax_label.grid(row=3,column=1)
 		self.ymax_input=Entry(newWindow,bd=1)
 		self.ymax_input.grid(row=3,column=2)
