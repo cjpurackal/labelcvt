@@ -42,7 +42,7 @@ elif conv_type == "bbox2yolo":
 					args.label_path,
 					converter.convert_bbox_to_yolo,
 					cat_names,
-					"txt",
+					"bbox",
 					"txt"
 					)
 	else:
