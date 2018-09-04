@@ -21,6 +21,8 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 from PIL import Image
 import numpy as np
+from converter import converter
+
 class GUI:
 	def __init__(self):
 		self.master = tk.Tk()
@@ -166,7 +168,7 @@ class GUI:
 		if res == "OK":
 			print("Everything loooks good!")
 			main.update_cat_names(self.directory)
-			main.convert(self.directory)
+			main.convert(self.directory,converter.xml_to_yolo)
 			print("Here")
 			self.progressingBar()
 		else:

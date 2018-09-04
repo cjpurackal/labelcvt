@@ -7,15 +7,16 @@ from lxml import etree
 from PIL import Image
 import converter.utils as utils
 
-with open("cat.names", "r") as f:
-	category = {name.split("\n",1)[0]:i for i,name in enumerate(f)}
 
+global category
 
+# with open("cat.names", "r") as f:
+# 	category = {name.split("\n",1)[0]:i for i, name in enumerate(f)}
 
-def convert_xml_to_bbox(food_name, root_path):	
+def convert_xml_to_bbox(food_name, root_path, cat_names="./cat.names"):	
 
-	f = open("cat.names", "r")
-	category = {name.split("\n",1)[0]:i for i,name in enumerate(f)}
+	with open(cat_names, "r") as f:
+		category = {name.split("\n",1)[0]:i for i,name in enumerate(f)}
 	wd = getcwd()
 	#if not exits, create the results folder 
 	if not os.path.exists(root_path+'/labelsbbox/'):
@@ -67,10 +68,11 @@ def convert_xml_to_bbox(food_name, root_path):
 
 
 
-def convert_bbox_to_yolo(food_name, root_path):
+def convert_bbox_to_yolo(food_name, root_path, cat_names="./cat.names"):
 	
-	f = open("cat.names", "r")
-	category = {name.split("\n",1)[0]:i for i,name in enumerate(f)}
+
+	with open(cat_names, "r") as f:
+		category = {name.split("\n",1)[0]:i for i,name in enumerate(f)}
 
 
 	cls_id = category[food_name]
@@ -119,10 +121,10 @@ def convert_bbox_to_yolo(food_name, root_path):
 
 
 
-def convert_xml_to_yolo(food_name, root_path):
+def convert_xml_to_yolo(food_name, root_path, cat_names):
 
-	convert_xml_to_bbox(food_name, root_path)
-	convert_bbox_to_yolo(food_name, root_path)
+	convert_xml_to_bbox(food_name, root_path, cat_names)
+	convert_bbox_to_yolo(food_name, root_path, cat_names)
 
 
 

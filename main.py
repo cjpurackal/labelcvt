@@ -21,14 +21,21 @@ def check_for_updates():
 
 
 
-def convert(path, ifmt="xml", ofmt="yolo"):
+# def convert(path, ifmt="xml", ofmt="yolo"):
+# 	root_path = path
+
+# 	for food_name in os.listdir(os.path.join(root_path,"labels"+ifmt)):
+# 		converter.convert_xml_to_yolo(food_name, root_path)
+
+
+def convert(path, conv, cat_names="./cat.names", ifmt="xml", ofmt="yolo"):
 	root_path = path
 
 	for food_name in os.listdir(os.path.join(root_path,"labels"+ifmt)):
-		converter.convert_xml_to_yolo(food_name, root_path)
+		conv(food_name, root_path, cat_names)
 
 
-def update_cat_names(root):
+def update_cat_names(root,):
 	f = open("cat.names","w+")
 	for cat in os.listdir(root+"/images"):
 		f.write(cat+"\n")
