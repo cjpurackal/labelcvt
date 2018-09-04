@@ -33,7 +33,7 @@ if conv_type == "xml2bbox":
 		print (res)
 
 elif conv_type == "bbox2yolo":
-	lfmt = "txt"
+	lfmt = "bbox"
 	ifmt = "jpg"
 	res = ensure.ensure(args.label_path, ifmt, lfmt)
 	if res == "OK":
