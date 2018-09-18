@@ -168,7 +168,7 @@ class GUI:
 		if res == "OK":
 			print("Everything loooks good!")
 			main.update_cat_names(self.directory)
-			main.convert(self.directory,converter.xml_to_yolo)
+			main.convert(self.directory,converter.convert_xml_to_yolo)
 			print("Here")
 			self.progressingBar()
 		else:
