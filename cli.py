@@ -2,6 +2,7 @@ import argparse
 from converter import converter
 import main
 import ensure
+from plot import visualize
 
 parser = argparse.ArgumentParser(description="labelcvt cli interface")
 parser.add_argument(
@@ -73,8 +74,9 @@ def label_converter(conv_type):
 
 def visualizer(visualize_type):
 	print (visualize_type)
+	visualize.visualize(args.dataset_path,args.cat_names)
 	#args.dataset_path will retrun dataset path
-	#args.cat_name refers to file containign required categories
+	#args.cat_names refers to file containign required categories
 
 
 if __name__ == "__main__":
