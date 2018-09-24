@@ -115,7 +115,7 @@ class GUI:
 
 		
 
-	#compare function
+	#upload function
 	def upload(self):
 		serverutil.filestosend(self)
 		

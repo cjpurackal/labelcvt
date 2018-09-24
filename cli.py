@@ -73,8 +73,10 @@ def label_converter(conv_type):
 			print (res)
 
 def visualizer(visualize_type):
-	print (visualize_type)
-	visualize.visualize(args.dataset_path,args.cat_names)
+	if visualize_type=="xml":
+		visualize.visualizexml(args.dataset_path,args.cat_names)
+	elif visualize_type=="yolo":
+		visualize.visualizeyolo(args.dataset_path,args.cat_names)
 	#args.dataset_path will retrun dataset path
 	#args.cat_names refers to file containign required categories
 
