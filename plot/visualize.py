@@ -47,6 +47,40 @@ def visualizeyolo(dataset_dir,file_path):
 					ax.add_patch(s)
 				plt.show()
 
+def visualizebbox(dataset_dir,file_path):
+	cat_name=open(file_path,"r")
+	cat_name=cat_name.readlines()
+	for i,p in enumerate(cat_name):
+		cat_name[i]=p.split("\n")[0]
+	for i in os.listdir(os.path.join(dataset_dir,"labelsbbox")):
+		if i in cat_name:
+			for cats in os.listdir(os.path.join(dataset_dir,"labelsbbox",i)):
+				image_name=cats.split(".")[0]+".jpg"
+				lines=open(os.path.join(dataset_dir,"labelsbbox",i,cats),"r")
+				line=lines.readlines()
+				xmin=[]
+				ymin=[]
+				width=[]
+				height=[]
+				image=os.path.join(dataset_dir,"images",i,image_name)
+				w_,h_=Image.open(image).size
+				for datas in line:
+					if len(datas)==2:
+						pass
+					else:
+						xmin.append(int(datas.split(" ")[0]))
+						ymin.append(int(datas.split(" ")[1]))
+						width.append(int(datas.split(" ")[2]))
+						height.append(int(datas.split(" ")[3].split("\n")[0]))
+				fig,ax=plt.subplots(1)
+				im=np.array(Image.open(image),dtype=np.uint8)
+				ax.imshow(im)
+				for o in range(len(xmin)):
+					s=patches.Rectangle((xmin[o],ymin[o]),width[o],height[o],linewidth=1,edgecolor='b',facecolor="none")
+					ax.add_patch(s)
+				plt.show()
+
+
 
 
 def visualizexml(dataset_dir,file_path):
