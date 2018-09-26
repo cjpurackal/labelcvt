@@ -70,8 +70,8 @@ def visualizebbox(dataset_dir,file_path):
 					else:
 						xmin.append(int(datas.split(" ")[0]))
 						ymin.append(int(datas.split(" ")[1]))
-						width.append(int(datas.split(" ")[2]))
-						height.append(int(datas.split(" ")[3].split("\n")[0]))
+						width.append(int(datas.split(" ")[2]) - int(datas.split(" ")[0]))
+						height.append(int(datas.split(" ")[3].split("\n")[0]) - int(datas.split(" ")[1]))
 				fig,ax=plt.subplots(1)
 				im=np.array(Image.open(image),dtype=np.uint8)
 				ax.imshow(im)
