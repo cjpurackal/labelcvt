@@ -77,6 +77,8 @@ def visualizer(visualize_type):
 		visualize.visualizexml(args.dataset_path,args.cat_names)
 	elif visualize_type=="yolo":
 		visualize.visualizeyolo(args.dataset_path,args.cat_names)
+	elif visualize_type=="bbox":
+		visualize.visualizebbox(args.dataset_path,args.cat_names)
 	#args.dataset_path will retrun dataset path
 	#args.cat_names refers to file containign required categories
 
