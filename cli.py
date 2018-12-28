@@ -12,7 +12,7 @@ parser.add_argument(
 					)
 parser.add_argument(
 					"--visualize",
-					choices=['xml', 'bbox', 'yolo'],
+					choices=['xml', 'bbox', 'yolo', 'json'],
 					help="visualize options"
 					)
 parser.add_argument("--dataset_path", help="source label path")
@@ -79,6 +79,8 @@ def visualizer(visualize_type):
 		visualize.visualizeyolo(args.dataset_path,args.cat_names)
 	elif visualize_type=="bbox":
 		visualize.visualizebbox(args.dataset_path,args.cat_names)
+	elif visualize_type=="json":
+		visualize.visualizejson(args.dataset_path,args.cat_names)
 	#args.dataset_path will retrun dataset path
 	#args.cat_names refers to file containign required categories
 
