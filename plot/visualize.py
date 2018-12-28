@@ -5,6 +5,8 @@ import sys
 import numpy as np
 from PIL import Image
 import xml.etree.ElementTree as et
+import json
+
 
 def visualizeyolo(dataset_dir,file_path):
 	cat_name=open(file_path,"r")
@@ -120,3 +122,38 @@ def visualizexml(dataset_dir,file_path):
 							ax.add_patch(s)
 						plt.show()
 						
+
+def visualizejson(dataset_dir, file_path):
+	cat_name = open(file_path, "r")
+	cat_name = cat_name.readlines()
+	for j,p in enumerate(cat_name):
+		cat_name[j]=p.split("\n")[0]
+	if not "labelsjson" in os.listdir(dataset_dir):
+		print("Check the file sturcutue...:(")
+	else:
+		for i in os.listdir(os.path.join(dataset_dir, "labelsjson")):
+			if i in cat_name:
+				print("No of json files in {} : {}".format(i, len(os.listdir(os.path.join(dataset_dir, "labelsjson", i)))))
+				for json_files in os.listdir(os.path.join(dataset_dir, "labelsjson", i)):
+					with open(os.path.join(dataset_dir, "labelsjson", i, json_files)) as json_data:
+						json_data = json.load(json_data)
+						for thing in json_data:
+							image_name = json_data[thing]['filename']
+							print(type(i),i)
+							print(image_name)	
+							if not os.path.isfile(os.path.join(dataset_dir, "images", str(i), str(image_name))):
+								print("{} no such file ".format(image_name))
+							else:
+								print("image found")
+								if len(json_data[thing]["regions"]) > 0:
+									image = np.array(Image.open(os.path.join(dataset_dir, "images", i, image_name)), dtype=np.uint8)
+									fig, ax = plt.subplots(1)
+									ax.imshow(image)
+									for k in range(len(json_data[thing]['regions'])):
+										s = patches.Polygon(np.column_stack((json_data[thing]['regions'][k]['shape_attributes']['all_points_x'], json_data[thing]['regions'][k]['shape_attributes']['all_points_y'])), linewidth=1, edgecolor='b', facecolor="none")
+										ax.add_patch(s)
+									plt.show()
+
+					
+
+
